@@ -6,7 +6,7 @@ const squares = document.querySelectorAll("[data-id]");
 const restart = document.getElementById("restart");
 
 let firstStart = true;
-let finished = false;
+export let finished = false;
 export let grid;
 
 // you can not export finished and change it in another file :(
@@ -17,6 +17,7 @@ export const toogleFinished = () => {
 function startGame() {
   grid = initialGrid();
   resetUi(squares);
+  finished = false;
 
   if (firstStart) {
     firstStart = false;

@@ -1,4 +1,4 @@
-import { toogleFinished } from "./app";
+import { grid, toogleFinished } from "./app";
 import { checkBord } from "./checkBoard";
 import { PLAYER } from "./consts";
 
@@ -36,7 +36,7 @@ export function resetUi(squares) {
 }
 
 export function handleResult() {
-  const result = checkBord();
+  const result = checkBord(grid);
   if (result) {
     toogleFinished();
     resultEl.textContent = `${result} won!`;

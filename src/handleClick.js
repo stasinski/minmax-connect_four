@@ -1,4 +1,4 @@
-import { grid } from "./app";
+import { grid, finished } from "./app";
 import { COMPUTER, PLAYER } from "./consts";
 import { handleClickUi, handleResult } from "./helpers";
 import { computerResponse } from "./minmax";
@@ -11,9 +11,11 @@ export function handleClick(id) {
     (target.taken = true), (target.canTake = false), (target.player = PLAYER);
     cellAbovetarget && (cellAbovetarget.canTake = true);
     handleClickUi(id, PLAYER);
+    handleResult();
+    if (!finished) {
+      handleComputer();
+    }
   }
-  handleResult();
-  handleComputer();
 }
 
 export function handleComputer() {

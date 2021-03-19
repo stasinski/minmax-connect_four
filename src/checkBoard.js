@@ -1,7 +1,6 @@
-import { grid } from "./app";
 import { winningArrays } from "./winningArrays";
 
-export const checkBord = () => {
+export const checkBord = (grid) => {
   let result = null;
   for (let i = 0; i < winningArrays.length; i++) {
     const sq1 = grid[winningArrays[i][0]];
