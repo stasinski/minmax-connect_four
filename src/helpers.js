@@ -1,3 +1,4 @@
+import { toogleFinished } from "./app";
 import { checkBord } from "./checkBoard";
 import { PLAYER } from "./consts";
 
@@ -26,17 +27,18 @@ export const handleClickUi = (id, player) => {
   }
 };
 
-export const resetUi = (squares) => {
+export function resetUi(squares) {
   squares.forEach((square) => {
     square.classList.remove("player");
     square.classList.remove("computer");
-    resultEl.textContent = "";
   });
-};
+  resultEl.textContent = "";
+}
 
-export const handleResult = () => {
+export function handleResult() {
   const result = checkBord();
   if (result) {
+    toogleFinished();
     resultEl.textContent = `${result} won!`;
   }
-};
+}

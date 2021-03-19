@@ -21,7 +21,7 @@ export function handleComputer() {
   const target = grid.find((el) => el.id === choosenCell);
   const cellAbovetarget = grid.find((el) => el.id === choosenCell - 10);
 
-  (target.taken = true), (target.canTake = false), (target.player = PLAYER);
+  (target.taken = true), (target.canTake = false), (target.player = COMPUTER);
   cellAbovetarget && (cellAbovetarget.canTake = true);
 
   handleClickUi(choosenCell, COMPUTER);
