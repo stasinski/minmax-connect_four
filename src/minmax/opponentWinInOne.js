@@ -8,7 +8,6 @@ export const opponentWinInOne = (cell, grid) => {
   (target.player = PLAYER), (target.canTake = false);
   const result = checkBord(grid);
   if (result === PLAYER) {
-    console.log("yes");
     return 80;
   }
   return 0;

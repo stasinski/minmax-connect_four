@@ -4,6 +4,7 @@ import { closeNeughbours } from "./closeNeighbors";
 import { twoInRow } from "./twoInRow";
 import { twoInCol } from "./twoInCol";
 import { opponentWinInOne } from "./opponentWinInOne";
+import { opponentCanWinAfter } from "./opponentCanWinAfter";
 
 export const computerResponse = () => {
   const filteredGrid = grid.filter((cell) => cell.canTake);
@@ -15,26 +16,33 @@ export const computerResponse = () => {
     let value = 0;
     // win in one
     mockGrid = JSON.parse(JSON.stringify(grid));
-    const isWinInOne = winInOne(cell, mockGrid);
-    if (isWinInOne) {
-      value += 1000;
-    }
+    const amountIsWinInOne = winInOne(cell, mockGrid);
+    value += amountIsWinInOne;
+
     // close neighbors
     mockGrid = JSON.parse(JSON.stringify(grid));
     const amountOfCloseNeighbours = closeNeughbours(cell, mockGrid);
     value += amountOfCloseNeighbours;
+
     // block if opponent has two in row
     mockGrid = JSON.parse(JSON.stringify(grid));
     const amountTwoInRow = twoInRow(cell, mockGrid);
     value += amountTwoInRow;
+
     // block column expand
     mockGrid = JSON.parse(JSON.stringify(grid));
     const amountTwoInCol = twoInCol(cell, mockGrid);
     value += amountTwoInCol;
+
     // block if opponent has win in one
     mockGrid = JSON.parse(JSON.stringify(grid));
     const amountOpponentWinInOne = opponentWinInOne(cell, mockGrid);
     value += amountOpponentWinInOne;
+
+    // opponent can win after this move
+    mockGrid = JSON.parse(JSON.stringify(grid));
+    const amountOpponentCanWinAfter = opponentCanWinAfter(cell, mockGrid);
+    value += amountOpponentCanWinAfter;
 
     // swap best move
     if (!bestMove || (bestMove && bestMove.value < value)) {
