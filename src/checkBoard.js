@@ -14,6 +14,7 @@ export const checkBord = (grid) => {
       sq1.player === sq3.player &&
       sq1.player === sq4.player
     ) {
+      console.log(grid);
       result = sq1.player;
       break;
     }

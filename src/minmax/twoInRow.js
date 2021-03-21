@@ -8,13 +8,13 @@ export const twoInRow = (cell, grid) => {
     if (grid[cellIndex - 1].player === PLAYER) {
       value += 15;
     } else {
-      value += 8;
+      value += 6;
     }
   } else if (grid[cellIndex + 1]?.taken && grid[cellIndex + 2]?.taken) {
     if (grid[cellIndex + 1].player === PLAYER) {
       value += 15;
     } else {
-      value += 8;
+      value += 6;
     }
   }
 

@@ -5,6 +5,8 @@ import { twoInRow } from "./twoInRow";
 import { twoInCol } from "./twoInCol";
 import { opponentWinInOne } from "./opponentWinInOne";
 import { opponentCanWinAfter } from "./opponentCanWinAfter";
+import { diagonalExpand } from "./diagonalExpand";
+import { opponentCanHasThreeAfter } from "./opponentCanHasThreeAfter";
 
 export const computerResponse = () => {
   const filteredGrid = grid.filter((cell) => cell.canTake);
@@ -34,6 +36,11 @@ export const computerResponse = () => {
     const amountTwoInCol = twoInCol(cell, mockGrid);
     value += amountTwoInCol;
 
+    // block diagonal expand
+    mockGrid = JSON.parse(JSON.stringify(grid));
+    const amountDiagonalExpand = diagonalExpand(cell, mockGrid);
+    value += amountDiagonalExpand;
+
     // block if opponent has win in one
     mockGrid = JSON.parse(JSON.stringify(grid));
     const amountOpponentWinInOne = opponentWinInOne(cell, mockGrid);
@@ -43,6 +50,14 @@ export const computerResponse = () => {
     mockGrid = JSON.parse(JSON.stringify(grid));
     const amountOpponentCanWinAfter = opponentCanWinAfter(cell, mockGrid);
     value += amountOpponentCanWinAfter;
+
+    // opponent can has 3/4 after this move
+    mockGrid = JSON.parse(JSON.stringify(grid));
+    const amountOpponentCanHasThreeAfter = opponentCanHasThreeAfter(
+      cell,
+      mockGrid
+    );
+    value += amountOpponentCanHasThreeAfter;
 
     // swap best move
     if (!bestMove || (bestMove && bestMove.value < value)) {

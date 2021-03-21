@@ -8,7 +8,7 @@ export const winInOne = (cell, grid) => {
   (target.player = COMPUTER), (target.canTake = false);
   const result = checkBord(grid);
   if (result === COMPUTER) {
-    return 1000;
+    return 200;
   }
   return 0;
 };
