@@ -7,6 +7,8 @@ import { opponentWinInOne } from "./opponentWinInOne";
 import { opponentCanWinAfter } from "./opponentCanWinAfter";
 import { diagonalExpand } from "./diagonalExpand";
 import { opponentCanHasThreeAfter } from "./opponentCanHasThreeAfter";
+import { opponentCanBlockWinningMove } from "./opponentCanBlockWin";
+import { doubleThree } from "./doubleThree";
 
 export const computerResponse = () => {
   const filteredGrid = grid.filter((cell) => cell.canTake);
@@ -58,6 +60,19 @@ export const computerResponse = () => {
       mockGrid
     );
     value += amountOpponentCanHasThreeAfter;
+
+    // opponent can block winning move
+    mockGrid = JSON.parse(JSON.stringify(grid));
+    const amountOpponentCanBlockWinningMove = opponentCanBlockWinningMove(
+      cell,
+      mockGrid
+    );
+    value += amountOpponentCanBlockWinningMove;
+
+    // can have double three
+    mockGrid = JSON.parse(JSON.stringify(grid));
+    const amountCanHaveDoubleThree = doubleThree(cell, mockGrid);
+    value += amountCanHaveDoubleThree;
 
     // swap best move
     if (!bestMove || (bestMove && bestMove.value < value)) {
