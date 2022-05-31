@@ -1,1 +1,1 @@
-## minmax algorithm in connect four game
+## algorithm in connect four game
